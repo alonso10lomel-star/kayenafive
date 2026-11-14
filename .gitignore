@@ -1,1 +1,5 @@
-
+.env
+*.pem
+*credentials*
+.aws/
+.ipynb_checkpoints/
