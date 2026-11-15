@@ -2,7 +2,7 @@
 Adapting Farms
 # Crop Rotation with NASA POWER Data
 
-Jackson Five is building a prototype that takes a location and uses NASA POWER climate data plus agronomic sources (FAO and INIFAP) to compare three crop rotation alternatives and explain why each one does or does not make sense. The test case is in the state of Chihuahua, Mexico (latitude 29.25, longitude -107.41), with daily data from 2016 to 2025. This is a NASA Space Apps project (November 14–15, 2026). Our success criterion is an honest prototype: it compares options using rules that can be traced back to their source, and it clearly states what it does not know.
+Kayena is building a prototype that takes a location and uses NASA POWER climate data plus agronomic sources (FAO and INIFAP) to compare three crop rotation alternatives and explain why each one does or does not make sense. The test case is in the state of Chihuahua, Mexico (latitude 29.25, longitude -107.41), with daily data from 2016 to 2025. This is a NASA Space Apps project (November 14–15, 2026). Our success criterion is an honest prototype: it compares options using rules that can be traced back to their source, and it clearly states what it does not know.
 
 ## Problem and User
 
