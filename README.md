@@ -67,8 +67,8 @@ El usuario da tres datos y recibe tres rotaciones explicadas. Todo lo que muestr
 | Integrante | Rol | Aporta al proyecto |
 | --- | --- | --- |
 | Kevin Alejandro Chávez Juárez | Coordinación e integración técnica | Alcance, decisiones de plan B y simulacro final |
-| Sebaspan | Análisis de datos NASA | CSV de NASA POWER limpio, indicadores y diccionario de variables |
-| César | Investigación agronómica y validación | Cultivos candidatos, tres rotaciones y criterios con fuente FAO o INIFAP |
-| Sebastin | AWS/Jupyter, datos compartidos y comunicación | Bucket S3, lectura en Jupyter, orden de evidencias, guía de uso y pitch |
+| Daniel Sebastian Torres Ontiveros | Análisis de datos NASA | CSV de NASA POWER limpio, indicadores y diccionario de variables |
+| César Yair Chavez Frias | Investigación agronómica y validación | Cultivos candidatos, tres rotaciones y criterios con fuente FAO o INIFAP |
+| Sebastian Alonso Lopez Melendez | AWS/Jupyter, datos compartidos y comunicación | Bucket S3, lectura en Jupyter, orden de evidencias, guía de uso y pitch |
 | Jesús Díaz | App y prueba de TinyML/GMM | Aplicación, comparación por reglas y prueba experimental del GMM |
-| Misael | ESP32, sensores y pruebas físicas | Lectura local del sensor y demostración física |
+| Misael Arturo Zepeda Juarez | ESP32, sensores y pruebas físicas | Lectura local del sensor y demostración física |
