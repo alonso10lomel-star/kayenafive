@@ -1,74 +1,75 @@
-# kayena
+# kayenafive
 Adapting Farms
-# Rotación de cultivos con datos NASA POWER
+# Jackson Five · Crop Rotation with NASA POWER Data
 
-Jackson Five construye un prototipo que, a partir de una ubicación, usa datos climáticos de NASA POWER y fuentes agronómicas (FAO e INIFAP) para comparar tres alternativas de rotación de cultivos y explicar por qué conviene o no cada una. El caso de prueba está en el estado de Chihuahua (latitud 29.25, longitud -107.41), con datos diarios de 2016 a 2025. Es un proyecto para NASA Space Apps (14 y 15 de noviembre de 2026). El criterio de éxito es un prototipo honesto: compara con reglas que se pueden rastrear hasta su fuente y dice con claridad lo que no sabe.
+Jackson Five is building a prototype that takes a location and uses NASA POWER climate data plus agronomic sources (FAO and INIFAP) to compare three crop rotation alternatives and explain why each one does or does not make sense. The test case is in the state of Chihuahua, Mexico (latitude 29.25, longitude -107.41), with daily data from 2016 to 2025. This is a NASA Space Apps project (November 14–15, 2026). Our success criterion is an honest prototype: it compares options using rules that can be traced back to their source, and it clearly states what it does not know.
 
-## Problema y usuario
+## Problem and User
 
-Un productor que decide qué sembrar después de su cultivo actual casi nunca tiene a la mano el clima histórico de su zona ni una forma clara de comparar opciones. Repetir el mismo cultivo cansa el suelo, y elegir uno que no aguanta la temperatura o el agua de la región sale caro.
+A farmer deciding what to plant after the current crop rarely has the area's climate history at hand, or a clear way to compare options. Planting the same crop again and again wears out the soil, and choosing a crop that cannot handle the region's temperature or water is costly.
 
-- **Usuario:** productor o técnico agrícola de una región semiárida del norte de México.
-- **Lo que da al sistema:** su ubicación, el cultivo anterior y su prioridad (por ejemplo, ahorrar agua).
-- **Lo que recibe:** tres rotaciones posibles, cada una con su razón, la condición que la favorece y su limitación.
+- **User:** a farmer or agricultural technician in a semi-arid region of northern Mexico.
+- **What they give the system:** their location, the previous crop, and their priority (for example, saving water).
+- **What they get:** three possible rotations, each with its reason, the condition that favors it, and its limitation.
 
-## Objetivos
+## Objectives
 
-**Objetivo general:** comparar tres alternativas de rotación de cultivos para una ubicación, usando datos climáticos de NASA POWER y criterios agronómicos con fuente, y explicar cada resultado con sus limitaciones.
+**General objective:** compare three crop rotation alternatives for a location, using NASA POWER climate data and sourced agronomic criteria, and explain each result along with its limitations.
 
-**Objetivos específicos:**
+**Specific MVP objectives (Saturday, Nov 14):**
 
-1. Obtener y limpiar un CSV diario de NASA POWER con temperatura, precipitación y humedad, documentando fuente, periodo y faltantes.
-2. Calcular indicadores climáticos básicos, como temperatura promedio y lluvia acumulada.
-3. Definir tres cultivos candidatos y tres criterios trazables a FAO o INIFAP: temperatura, agua y temporada.
-4. Mostrar en una app el recorrido entrada → datos → tres rotaciones, con al menos una razón por opción.
-5. Guardar los datos en un bucket privado de S3 y leerlos desde Jupyter sin exponer claves.
+1. Obtain and clean a daily NASA POWER CSV with temperature, precipitation, and humidity, documenting source, time period, and missing values.
+2. Calculate basic climate indicators, such as average temperature and accumulated rainfall.
+3. Define three candidate crops and three criteria traceable to FAO or INIFAP: temperature, water, and season.
+4. Show in an app the flow input → data → three rotations, with at least one reason per option.
+5. Store the data in a private S3 bucket and read it from Jupyter without exposing keys.
 
-**Extensiones:**
+**Extensions (Sunday, Nov 15, only if the MVP works):**
 
-1. Conectar una lectura local de un sensor con ESP32, etiquetada como práctica.
-2. Comparar un modelo pequeño de TinyML (GMM) contra las reglas, sin presentarlo como predicción validada.
-3. Publicar la app en línea y tener un video de respaldo.
+1. Connect a local reading from an ESP32 sensor, labeled as a practice demo.
+2. Compare a small TinyML model (GMM) against the rules, without presenting it as a validated prediction.
+3. Publish the app online and have a backup video.
 
-## Nuestros datos
+## Our Data
 
-La fuente principal es un CSV diario de [NASA POWER](https://power.larc.nasa.gov/) para la latitud 29.25 y la longitud -107.41 (Chihuahua), del 1 de enero de 2016 al 31 de diciembre de 2025. Son unos 3,650 días, uno por fila.
+The main source is a daily CSV from [NASA POWER](https://power.larc.nasa.gov/) for latitude 29.25 and longitude -107.41 (Chihuahua), from January 1, 2016 to December 31, 2025. That is about 3,650 days, one per row.
 
-| Columna | Qué mide | Unidad | Para qué la usamos |
+| Column | What it measures | Unit | What we use it for |
 | --- | --- | --- | --- |
-| `YEAR`, `DOY` | Año y día del año (1 a 366) | — | Armar la fecha y separar temporadas |
-| `T2M` | Temperatura media a 2 m | °C | Si el cultivo tolera el clima de la zona |
-| `T2M_MAX`, `T2M_MIN` | Temperatura máxima y mínima a 2 m | °C | Riesgo de calor extremo y de heladas |
-| `T2MDEW` | Punto de rocío o escarcha a 2 m | °C | Apoyo para estimar humedad y heladas |
-| `RH2M` | Humedad relativa a 2 m | % | Contexto de humedad y riesgo de plagas |
-| `PRECTOTCORR` | Precipitación corregida | mm/día | Lluvia acumulada por temporada, el criterio de agua |
+| `YEAR`, `DOY` | Year and day of year (1 to 366) | — | Build the date and split seasons |
+| `T2M` | Mean temperature at 2 m | °C | Whether the crop tolerates the local climate |
+| `T2M_MAX`, `T2M_MIN` | Maximum and minimum temperature at 2 m | °C | Risk of extreme heat and frost |
+| `T2MDEW` | Dew/frost point at 2 m | °C | Support for estimating humidity and frost |
+| `RH2M` | Relative humidity at 2 m | % | Humidity context and pest risk |
+| `PRECTOTCORR` | Corrected precipitation | mm/day | Accumulated rainfall per season, the water criterion |
 
-- **Formato:** el archivo trae un encabezado de NASA que termina en `-END HEADER-`. Al leerlo con pandas hay que saltar esas líneas.
-- **Faltantes:** NASA marca con `-999` los días sin dato. Se reemplazan por vacío antes de calcular promedios.
-- **Alcance espacial:** es un dato regional de malla, no la medición de una parcela. Describe la zona, no el suelo de un rancho en particular.
-- **Fuentes agronómicas:** las necesidades de temperatura, agua y temporada de cada cultivo salen de [FAO](https://www.fao.org/) e [INIFAP](https://www.gob.mx/inifap). Lo que no tenga fuente se marca como ilustrativo.
-- **Sensor local (extensión):** lecturas de un ESP32 con nombre de variable y unidad. Se presentan como demostración, no como humedad de suelo calibrada.
-- **Dónde viven:** el CSV original y el limpio se guardan en un bucket privado de S3 y en las carpetas `datos/crudos` y `datos/limpios` del repositorio.
+- **Format:** the file starts with a NASA header that ends at `-END HEADER-`. Those lines must be skipped when reading it with pandas.
+- **Missing values:** NASA marks days without data as `-999`. They are replaced with empty values before computing averages.
+- **Spatial scope:** this is regional gridded data, not a field measurement. It describes the area, not the soil of a specific farm.
+- **Agronomic sources:** each crop's temperature, water, and season requirements come from [FAO](https://www.fao.org/) and [INIFAP](https://www.gob.mx/inifap). Anything without a source is marked as illustrative.
+- **Local sensor (extension):** ESP32 readings with variable name and unit. They are presented as a demo, not as calibrated soil moisture.
+- **Where the data lives:** the original and cleaned CSV files are stored in a private S3 bucket and in the repository's `datos/crudos` (raw) and `datos/limpios` (clean) folders.
 
-## Cómo funciona
+## How It Works
 
-El usuario da tres datos y recibe tres rotaciones explicadas. Todo lo que muestra la app se puede rastrear hasta el CSV de NASA o hasta una fuente agronómica.
+The user provides three inputs and receives three explained rotations. Everything the app shows can be traced back to the NASA CSV or to an agronomic source.
 
-1. **Entrada:** el usuario elige la ubicación, el cultivo anterior y su prioridad.
-2. **Datos:** la app carga el CSV limpio de NASA POWER de esa zona y calcula los indicadores, como temperatura promedio, riesgo de helada y lluvia acumulada por temporada.
-3. **Criterios:** compara cada cultivo candidato contra tres reglas con fuente (temperatura, agua y temporada).
-4. **Salida:** muestra tres rotaciones, cada una con su razón, la condición que la favorece y su limitación.
-5. **Extensiones:** si hay tiempo, se suma una lectura local del ESP32 y una comparación experimental con TinyML.
+1. **Input:** the user chooses the location, the previous crop, and their priority.
+2. **Data:** the app loads the cleaned NASA POWER CSV for that area and calculates indicators such as average temperature, frost risk, and accumulated rainfall per season.
+3. **Criteria:** it compares each candidate crop against three sourced rules (temperature, water, and season).
+4. **Output:** it shows three rotations, each with its reason, the condition that favors it, and its limitation.
+5. **Extensions:** if time allows, we add a local ESP32 reading and an experimental TinyML comparison.
 
-**Por dónde viajan los datos:** Sebaspan descarga el CSV de NASA POWER y lo sube a un bucket privado de S3. Sebastin lo lee en Jupyter para revisarlo y limpiarlo, sin exponer claves de AWS. Jesús lo carga en la app (Streamlit o plantilla web), y si AWS o internet fallan, la app corre en local con el CSV del repositorio.
+**How the data flows:** Sebaspan downloads the NASA POWER CSV and uploads it to a private S3 bucket. Sebastin reads it in Jupyter to review and clean it, without exposing AWS keys. Jesús loads it into the app (Streamlit or a web template), and if AWS or the internet fails, the app runs locally with the CSV from the repository.
 
-## Equipo y roles
+## Team and Roles
 
-| Integrante | Rol | Aporta al proyecto |
+| Member | Role | Contribution to the project |
 | --- | --- | --- |
-| Kevin Alejandro Chávez Juárez | Coordinación e integración técnica | Alcance, decisiones de plan B y simulacro final |
-| Daniel Sebastian Torres Ontiveros | Análisis de datos NASA | CSV de NASA POWER limpio, indicadores y diccionario de variables |
-| César Yair Chavez Frias | Investigación agronómica y validación | Cultivos candidatos, tres rotaciones y criterios con fuente FAO o INIFAP |
-| Sebastian Alonso Lopez Melendez | AWS/Jupyter, datos compartidos y comunicación | Bucket S3, lectura en Jupyter, orden de evidencias, guía de uso y pitch |
-| Oscar Ramses Carrasco Cordova | App y prueba de TinyML/GMM | Aplicación, comparación por reglas y prueba experimental del GMM |
-| Misael Arturo Zepeda Juarez | ESP32, sensores y pruebas físicas | Lectura local del sensor y demostración física |
+| Kevin Alejandro Chávez Juárez | Coordination and technical integration | Scope, plan B decisions, and final dry run |
+| Daniel Sebastian Torres Ontiveros | NASA data analysis | Clean NASA POWER CSV, indicators, and variable dictionary |
+| César Yair Chavez Frias | Agronomic research and validation | Candidate crops, three rotations, and criteria sourced from FAO or INIFAP |
+| Sebastian Alonso Lopez Melendez | AWS/Jupyter, shared data, and communication | S3 bucket, Jupyter data reading, evidence organization, user guide, and pitch |
+| Oscar Ramses Carrasco Cordova | App and TinyML/GMM testing | Application, rule-based comparison, and experimental GMM test |
+| Misael Arturo Zepeda Juarez | ESP32, sensors, and physical testing | Local sensor reading and physical demo |
+
