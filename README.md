@@ -1,6 +1,6 @@
-# kayenafive
+# kayena
 Adapting Farms
-# Jackson Five · Crop Rotation with NASA POWER Data
+# Crop Rotation with NASA POWER Data
 
 Jackson Five is building a prototype that takes a location and uses NASA POWER climate data plus agronomic sources (FAO and INIFAP) to compare three crop rotation alternatives and explain why each one does or does not make sense. The test case is in the state of Chihuahua, Mexico (latitude 29.25, longitude -107.41), with daily data from 2016 to 2025. This is a NASA Space Apps project (November 14–15, 2026). Our success criterion is an honest prototype: it compares options using rules that can be traced back to their source, and it clearly states what it does not know.
 
@@ -16,7 +16,7 @@ A farmer deciding what to plant after the current crop rarely has the area's cli
 
 **General objective:** compare three crop rotation alternatives for a location, using NASA POWER climate data and sourced agronomic criteria, and explain each result along with its limitations.
 
-**Specific MVP objectives (Saturday, Nov 14):**
+**Specific MVP objectives :**
 
 1. Obtain and clean a daily NASA POWER CSV with temperature, precipitation, and humidity, documenting source, time period, and missing values.
 2. Calculate basic climate indicators, such as average temperature and accumulated rainfall.
@@ -24,7 +24,7 @@ A farmer deciding what to plant after the current crop rarely has the area's cli
 4. Show in an app the flow input → data → three rotations, with at least one reason per option.
 5. Store the data in a private S3 bucket and read it from Jupyter without exposing keys.
 
-**Extensions (Sunday, Nov 15, only if the MVP works):**
+**Extensions :**
 
 1. Connect a local reading from an ESP32 sensor, labeled as a practice demo.
 2. Compare a small TinyML model (GMM) against the rules, without presenting it as a validated prediction.
