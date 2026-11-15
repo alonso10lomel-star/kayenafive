@@ -1,6 +1,6 @@
 # kayenafive
 Adapting Farms
-# Jackson Five · Rotación de cultivos con datos NASA POWER
+# Rotación de cultivos con datos NASA POWER
 
 Jackson Five construye un prototipo que, a partir de una ubicación, usa datos climáticos de NASA POWER y fuentes agronómicas (FAO e INIFAP) para comparar tres alternativas de rotación de cultivos y explicar por qué conviene o no cada una. El caso de prueba está en el estado de Chihuahua (latitud 29.25, longitud -107.41), con datos diarios de 2016 a 2025. Es un proyecto para NASA Space Apps (14 y 15 de noviembre de 2026). El criterio de éxito es un prototipo honesto: compara con reglas que se pueden rastrear hasta su fuente y dice con claridad lo que no sabe.
 
