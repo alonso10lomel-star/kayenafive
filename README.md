@@ -16,7 +16,7 @@ Un productor que decide qué sembrar después de su cultivo actual casi nunca ti
 
 **Objetivo general:** comparar tres alternativas de rotación de cultivos para una ubicación, usando datos climáticos de NASA POWER y criterios agronómicos con fuente, y explicar cada resultado con sus limitaciones.
 
-**Objetivos específicos del MVP (sábado 14):**
+**Objetivos específicos:**
 
 1. Obtener y limpiar un CSV diario de NASA POWER con temperatura, precipitación y humedad, documentando fuente, periodo y faltantes.
 2. Calcular indicadores climáticos básicos, como temperatura promedio y lluvia acumulada.
@@ -24,7 +24,7 @@ Un productor que decide qué sembrar después de su cultivo actual casi nunca ti
 4. Mostrar en una app el recorrido entrada → datos → tres rotaciones, con al menos una razón por opción.
 5. Guardar los datos en un bucket privado de S3 y leerlos desde Jupyter sin exponer claves.
 
-**Extensiones (domingo 15, solo si el MVP funciona):**
+**Extensiones:**
 
 1. Conectar una lectura local de un sensor con ESP32, etiquetada como práctica.
 2. Comparar un modelo pequeño de TinyML (GMM) contra las reglas, sin presentarlo como predicción validada.
