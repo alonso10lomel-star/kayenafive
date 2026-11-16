@@ -36,7 +36,7 @@ The main source is a daily CSV from [NASA POWER](https://power.larc.nasa.gov/) f
 
 | Column | What it measures | Unit | What we use it for |
 | --- | --- | --- | --- |
-| `YEAR`, `DOY` | Year and day of year (1 to 366) | — | Build the date and split seasons |
+| `YEAR`, `DOY` | Year and day of year (1 to 365) | — | Build the date and split seasons |
 | `T2M` | Mean temperature at 2 m | °C | Whether the crop tolerates the local climate |
 | `T2M_MAX`, `T2M_MIN` | Maximum and minimum temperature at 2 m | °C | Risk of extreme heat and frost |
 | `T2MDEW` | Dew/frost point at 2 m | °C | Support for estimating humidity and frost |
