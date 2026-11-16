@@ -22,7 +22,7 @@ A farmer deciding what to plant after the current crop rarely has the area's cli
 2. Calculate basic climate indicators, such as average temperature and accumulated rainfall.
 3. Define three candidate crops and three criteria traceable to FAO or INIFAP: temperature, water, and season.
 4. Show in an app the flow input → data → three rotations, with at least one reason per option.
-5. Store the data in a private S3 bucket and read it from Jupyter without exposing keys.
+5. Store the data in a private bucket.
 
 **Extensions :**
 
