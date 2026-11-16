@@ -48,7 +48,6 @@ The main source is a daily CSV from [NASA POWER](https://power.larc.nasa.gov/) f
 - **Spatial scope:** this is regional gridded data, not a field measurement. It describes the area, not the soil of a specific farm.
 - **Agronomic sources:** each crop's temperature, water, and season requirements come from [FAO](https://www.fao.org/) and [INIFAP](https://www.gob.mx/inifap). Anything without a source is marked as illustrative.
 - **Local sensor (extension):** ESP32 readings with variable name and unit. They are presented as a demo, not as calibrated soil moisture.
-- **Where the data lives:** the original and cleaned CSV files are stored in a private S3 bucket and in the repository's `datos/crudos` (raw) and `datos/limpios` (clean) folders.
 
 ## How It Works
 
