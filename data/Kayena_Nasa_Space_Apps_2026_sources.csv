@@ -1,0 +1,24 @@
+﻿NASA sources · data portals,,,
+Source,Covers Chihuahua?,What it provides,Use in the project
+NASA POWER,Yes,"Global daily weather: temperature, rainfall, radiation, humidity","Frosts, growing degree days and sowing window per location"
+GPM (NASA),Yes,IMERG satellite precipitation,Season rainfall and midsummer drought (supplemental irrigation rule)
+SMAP (Earthdata),Yes,"Surface and root-zone soil moisture (L4_SM, 9 km)",Trigger for supplemental irrigation at flowering
+ECOSTRESS,Yes,"Land surface temperature and evapotranspiration from the ISS, ~70 m",Water stress per plot (irregular overpasses)
+Earthdata Search: VIIRS,Yes,Near-daily vegetation indices and land surface temperature,NDVI monitoring of Daikon and beans
+LP DAAC,Yes,"Catalog of MODIS, VIIRS, ECOSTRESS and elevation model products",Download of NDVI and land surface temperature
+USGS EarthExplorer,Yes,"Download of Landsat, Sentinel and other imagery",30 m NDVI per plot; Kc = 1.15·NDVI + 0.17
+SRTM (Earthdata),Yes,30 m elevation model,Altitude and slope (basin furrows above 1.5 %)
+GEDI,Yes,Vertical vegetation structure (lidar),"Low priority: designed for forests, not annual crops"
+NASA Earthdata,Yes,NASA's general data portal (account required),"Entry point and account for SMAP, GPM and VIIRS"
+,,,
+,,,
+NASA documents and data files,,,
+Title,Authors or institution (year),Used in,Link
+"SMAP Level 4 Surface and Root Zone Soil Moisture (L4_SM) Data Product, ATBD v.1","Reichle, Crow, Koster, Kimball y De Lannoy (2012)",Case study,https://smap.jpl.nasa.gov/files/smap2/L4_SM_InitRel_v1.pdf
+"SMAP Level 4 Carbon Data Product (L4_C), ATBD v.1","Kimball, Reichle, O'Neill, McDonald y Njoku (2012)",Case study,https://smap.jpl.nasa.gov/files/smap2/L4_C_InitRel_v1_filt.pdf
+"SMAP Level 1A Radar Product Specification Document, Rev. C","Weiss y Madatyan, JPL (2016)",Reviewed; not used in the model,https://asf.alaska.edu/wp-content/uploads/2019/03/d-72543-c_smap_radar_l1a_product_specification_document.pdf
+"SMAP Level 1B_S0_LoRes Product Specification Document, Rev. B","Weiss y Maatyan, JPL (2016)",Reviewed; not used in the model,https://asf.alaska.edu/wp-content/uploads/2019/03/d-72544-b_smap_l1b_s0_lores_product_specification_document.pdf
+Agricultura en el desierto mexicano de Chihuahua,NASA Ciencia (2022),Context; not used in the case study,https://ciencia.nasa.gov/ciencias-terrestres/agricultura-en-el-desierto-mexicano-de-chihuahua/
+NASA Harvest,NASA y University of Maryland (s.f.),Supplement (portal),https://www.nasaharvest.org/
+"Datos diarios de NASA POWER para Namiquipa (29.25 N, −107.409 O), 2015–2024",NASA POWER: MERRA-2 y CERES SYN1deg (2026),"Namiquipa sheet: temperature, rainfall, relative humidity, radiation, wind, skin temperature and soil moisture; dry years 2020, 2023 and 2024; frost dates","https://power.larc.nasa.gov/api/temporal/daily/point?parameters=T2M,T2M_MAX,T2M_MIN,PRECTOTCORR,RH2M,ALLSKY_SFC_SW_DWN,WS2M,TS,GWETTOP,GWETROOT&community=AG&longitude=-107.409&latitude=29.250&start=20150101&end=20241231&format=CSV"
+"SMAP Mission Level 4 Carbon (L4_C) Product Specification Document (GMAO Office Note No. 11, v. 1.9)","Glassy, Kimball, Jones, Reichle, Ardizzone, Kim, Lucchesi, Smith y Weiss (2015)",L4_C supplement: description of the carbon product. It is not the Kimball et al. (2012) ATBD,https://ntrs.nasa.gov/api/citations/20160008106/downloads/20160008106.pdf
