@@ -60,7 +60,7 @@ The user provides three inputs and receives three explained rotations. Everythin
 4. **Output:** it shows three rotations, each with its reason, the condition that favors it, and its limitation.
 5. **Extensions:** if time allows, we add a local ESP32 reading and an experimental TinyML comparison.
 
-**How the data flows:** Sebaspan downloads the NASA POWER CSV and uploads it to a private S3 bucket. Sebastin reads it in Jupyter to review and clean it, without exposing AWS keys. Jesús loads it into the app (Streamlit or a web template), and if AWS or the internet fails, the app runs locally with the CSV from the repository.
+
 
 ## Team and Roles
 
